@@ -1,25 +1,16 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
-import tseslint from "@typescript-eslint/eslint-plugin";
+import tseslint from "typescript-eslint";
 import prettierConfig from "eslint-config-prettier";
 
 export default [
   {
-    ignores: ["**/node_modules/", "**/.dist/"],
+    ignores: ["**/node_modules/", ".dist/"],
     languageOptions: {
-      parser: "@typescript-eslint/parser",
-      parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-      },
       globals: {
         ...globals.browser,
         process: "readonly",
       },
-    },
-    env: {
-      browser: true,
-      es2021: true,
     },
     rules: {
       "no-unused-vars": "error",
@@ -30,6 +21,6 @@ export default [
     },
   },
   pluginJs.configs.recommended,
-  tseslint.configs.recommended,
+  ...tseslint.configs.recommended,
   prettierConfig,
 ];

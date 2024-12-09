@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:prod": "node ./dist/server.js",
     "start:dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "lint": "npx eslint src --ignore-pattern .ts",
+    "build": "tsc",
+    "lint": "npx eslint \"src/**/*.{ts,js,json}\" --ignore-pattern node_modules",
     "lint:fix": "npx eslint src --fix",
     "prettier": "prettier --ignore-path .gitignore --write \"./src/**/*.+(js|ts|json)\"",
     "prettier:fix": "npx prettier --write src",
-    "deploy": "vercel --prod"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -35,7 +36,10 @@
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
     "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
     "globals": "^15.13.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.2",
