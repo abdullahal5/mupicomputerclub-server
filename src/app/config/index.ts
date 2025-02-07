@@ -12,5 +12,6 @@ export default {
   Access_Token_Expires: process.env.Access_Token_Expires,
   Refresh_Token_Expires: process.env.Refresh_Token_Expires,
   Bcrypt_Salt_Round: process.env.Bcrypt_Salt_Round,
-  Reset_pass_ui_link: process.env.Reset_pass_ui_link,
+  Admin_Email: process.env.Admin_Email,
+  Admin_Password: process.env.Admin_Password,
 };

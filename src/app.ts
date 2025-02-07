@@ -3,7 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import globalErrorHandler from "./app/middlewares/globalErrorHandlers";
 import notFound from "./app/middlewares/notFound";
-// import router from "./routes";
+import router from "./app/routes";
 
 const app: Application = express();
 
@@ -17,7 +17,7 @@ app.use(
 
 app.use(cookieParser());
 
-// app.use("/api/v1", router);
+app.use("/api/v1", router);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello Next Level Developers 👋!!!");
