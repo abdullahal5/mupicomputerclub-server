@@ -15,7 +15,7 @@ const loginUser = async (payload: IUser) => {
   }
 
   const adminPayload: JwtpayloadData = {
-    username: "Admin",
+    role: "admin",
     email: AdminEmail,
     password: AdminPassword,
   };

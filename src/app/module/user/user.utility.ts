@@ -1,7 +1,7 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 export type JwtpayloadData = {
-  username: string | undefined;
+  role: string | undefined;
   email: string | undefined;
   password: string | undefined;
 };
