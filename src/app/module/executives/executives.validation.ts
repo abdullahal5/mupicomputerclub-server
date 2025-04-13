@@ -13,11 +13,11 @@ export const developerPositions = [
 
 import { z } from "zod";
 
-const roleTypes = ["advisor", "mentor", "developer"] as const;
+const roleTypes = ["advisor", "executive", "developer"] as const;
 
 const roleByType: Record<(typeof roleTypes)[number], string[]> = {
-  advisor: ["advisor", "mentor"],
-  mentor: [
+  advisor: ["advisor", "executive"],
+  executive: [
     "president",
     "vice president",
     "secretary",
@@ -37,7 +37,7 @@ const createExecutiveSchema = z.object({
       contact: z.string().min(10, "Contact must be at least 10 digits"),
       email: z.string().email("Invalid email address"),
       communitySession: z.string().min(1, "communitySession is required"),
-      session: z.string().min(1, "Session is required"),
+      session: z.string().optional(),
       roleType: z.enum(roleTypes),
       role: z.string().min(1, "Role is required"),
       linkedin: z.string().url("Invalid LinkedIn URL").optional(),
@@ -45,7 +45,16 @@ const createExecutiveSchema = z.object({
       twitter: z.string().url("Invalid Twitter URL").optional(),
     })
     .superRefine((data, ctx) => {
-      const { roleType, role } = data;
+      const { roleType, role, session } = data;
+
+      if (roleType !== "advisor" && (!session || session.trim() === "")) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["session"],
+          message: "Session is required",
+        });
+      }
+
       if (roleType && role && !roleByType[roleType]?.includes(role)) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,

@@ -8,11 +8,11 @@ const ExecutiveSchema: Schema = new Schema<IExecutives>(
     contact: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     communitySession: { type: String, required: true },
-    session: { type: String, required: true },
+    session: { type: String },
     roleType: {
       type: String,
       required: true,
-      enum: ["advisor", "mentor", "developer"],
+      enum: ["advisor", "executive", "developer"],
     },
     role: { type: String, required: true },
     linkedin: { type: String, default: "" },
