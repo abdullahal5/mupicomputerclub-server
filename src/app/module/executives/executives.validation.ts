@@ -16,7 +16,7 @@ import { z } from "zod";
 const roleTypes = ["advisor", "executive", "developer"] as const;
 
 const roleByType: Record<(typeof roleTypes)[number], string[]> = {
-  advisor: ["advisor", "executive"],
+  advisor: ["advisor", "mentor"],
   executive: [
     "president",
     "vice president",
