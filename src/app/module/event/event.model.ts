@@ -12,6 +12,7 @@ const EventSchema: Schema = new Schema<IEvent>(
     startTime: { type: String, required: true },
     location: { type: String, required: true },
     description: { type: String, required: true },
+    sponsorLogos: { type: [String] },
     eligibilityCriteria: { type: [String], required: true },
   },
   { timestamps: true },

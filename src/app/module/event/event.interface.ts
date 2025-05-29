@@ -9,6 +9,7 @@ export interface IEvent {
   location: string;
   description: string;
   eligibilityCriteria: string[];
+  sponsorLogos?: string[]
   createdAt: string;
   updatedAt: string;
 }

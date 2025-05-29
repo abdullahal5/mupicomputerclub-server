@@ -10,4 +10,5 @@ export interface ISession {
   location: string;
   description: string;
   eligibilityCriteria: string[];
+  sponsorLogos?: string[]
 }

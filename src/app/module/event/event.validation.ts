@@ -11,6 +11,7 @@ export const createEventValidationSchema = z.object({
     startTime: z.string().min(1, "Start date is required"),
     location: z.string().min(1, "Location is required"),
     description: z.string().min(1, "Description is required"),
+    sponsorLogos: z.array(z.string()).optional(),
     eligibilityCriteria: z
       .array(z.string())
       .min(1, "At least one eligibility criterion is required"),
@@ -31,6 +32,7 @@ export const updateEventValidationSchema = z.object({
     startTime: z.string().min(1, "Start date is required").optional(),
     location: z.string().min(1, "Location is required").optional(),
     description: z.string().min(1, "Description is required").optional(),
+    sponsorLogos: z.array(z.string()).optional(),
     eligibilityCriteria: z
       .array(z.string())
       .min(1, "At least one eligibility criterion is required")

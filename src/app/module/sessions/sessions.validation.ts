@@ -10,7 +10,9 @@ export const createSessionValidationSchema = z.object({
     endTime: z.string().min(1, "End time is required"),
     startTime: z.string().min(1, "Start time is required"),
     location: z.string().min(1, "Location is required"),
+    sessionLink: z.string().optional(),
     description: z.string().min(1, "Description is required"),
+    sponsorLogos: z.array(z.string()).optional(),
     eligibilityCriteria: z
       .array(z.string())
       .min(1, "At least one eligibility criterion is required"),
@@ -29,7 +31,9 @@ export const updateSessionValidationSchema = z.object({
     endTime: z.string().min(1, "End time is required").optional(),
     startTime: z.string().min(1, "Start time is required").optional(),
     location: z.string().min(1, "Location is required").optional(),
+    sessionLink: z.string().optional(),
     description: z.string().min(1, "Description is required").optional(),
+    sponsorLogos: z.array(z.string()).optional(),
     eligibilityCriteria: z
       .array(z.string())
       .min(1, "At least one eligibility criterion is required")
