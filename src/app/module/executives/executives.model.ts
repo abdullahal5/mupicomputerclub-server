@@ -3,7 +3,12 @@ import { IExecutives } from "./executives.interface";
 
 const ExecutiveSchema: Schema = new Schema<IExecutives>(
   {
-    profileImage: { type: String, required: true },
+    profileImage: {
+      type: String,
+      required: true,
+      default:
+        "https://res.cloudinary.com/dhcjdfpf7/image/upload/v1757929834/download-removebg-preview_5_rz4kxw.png",
+    },
     fullName: { type: String, required: true },
     contact: { type: String, required: true },
     email: { type: String, required: true, unique: true },
