@@ -1,4 +1,4 @@
-export const developerPositions = [
+export const developerranks = [
   { name: "Web Developer", value: "web_developer" },
   { name: "App Developer", value: "app_developer" },
   { name: "Frontend Developer", value: "frontend_developer" },
@@ -26,7 +26,7 @@ const roleByType: Record<(typeof roleTypes)[number], string[]> = {
     "treasurer",
     "technical team lead",
   ],
-  developer: developerPositions.map((dev) => dev.value),
+  developer: developerranks.map((dev) => dev.value),
 };
 
 const createExecutiveSchema = z.object({
@@ -38,6 +38,7 @@ const createExecutiveSchema = z.object({
       email: z.string().email("Invalid email address"),
       communitySession: z.string().min(1, "communitySession is required"),
       session: z.string().optional(),
+      rank: z.number().min(1, "rank is required"),
       roleType: z.enum(roleTypes),
       role: z.string().min(1, "Role is required"),
       linkedin: z.string().url("Invalid LinkedIn URL").optional(),
@@ -77,6 +78,7 @@ const updateExecutiveSchema = z.object({
       email: z.string().email("Invalid email address").optional(),
       roll: z.string().min(1, "Roll is required").optional(),
       session: z.string().min(1, "Session is required").optional(),
+      rank: z.number().min(1, "rank is required").optional(),
       roleType: z.enum(roleTypes).optional(),
       role: z.string().min(1, "Role is required").optional(),
       linkedin: z.string().url("Invalid LinkedIn URL").optional(),

@@ -5,6 +5,7 @@ export interface IExecutives {
   email: string;
   communitySession: string;
   session: string;
+  rank: number;
   roleType: string;
   role: string;
   linkedin: string;

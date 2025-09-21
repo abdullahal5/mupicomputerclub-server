@@ -14,6 +14,7 @@ const ExecutiveSchema: Schema = new Schema<IExecutives>(
     email: { type: String, required: true, unique: true },
     communitySession: { type: String, required: true },
     session: { type: String },
+    rank: { type: Number },
     roleType: {
       type: String,
       required: true,

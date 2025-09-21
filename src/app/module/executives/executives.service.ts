@@ -5,11 +5,39 @@ import httpStatus from "http-status-codes";
 import { ExecutivesModel } from "./executives.model";
 
 const createExecutiveIntoDB = async (body: IExecutives) => {
+  const existingExecutive = await ExecutivesModel.findOne({
+    rank: body.rank,
+  });
+
+  if (existingExecutive) {
+    throw new AppError(
+      httpStatus.CONFLICT,
+      `Executive with rank "${body.rank}" already exists`,
+    );
+  }
+
   const result = await ExecutivesModel.create(body);
+
+  if (!result) {
+    throw new AppError(httpStatus.NOT_FOUND, "Executive not found");
+  }
+
   return result;
 };
 
 const updateExecutiveInDB = async (id: string, body: Partial<IExecutives>) => {
+  const existingExecutive = await ExecutivesModel.findOne({
+    rank: body.rank,
+    _id: { $ne: id },
+  });
+
+  if (existingExecutive) {
+    throw new AppError(
+      httpStatus.CONFLICT,
+      `Executive with rank "${body.rank}" already exists`,
+    );
+  }
+
   const result = await ExecutivesModel.findByIdAndUpdate(id, body, {
     new: true,
   });
@@ -27,12 +55,11 @@ const getAllExecutivesFromDB = async (session?: string, roleType?: string) => {
   }
 
   const results = await ExecutivesModel.find(query).sort({
-    createdAt: -1,
+    rank: 1,
   });
 
   return results;
 };
-
 
 const getExecutiveByIdFromDB = async (id: string) => {
   const result = await ExecutivesModel.findById(id);
