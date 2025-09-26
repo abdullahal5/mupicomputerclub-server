@@ -10,7 +10,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://mupicomputerclub.vercel.app"],
+    origin: ["http://localhost:5173", "https://mupicc.vercel.app"],
     credentials: true,
   }),
 );
